@@ -6,7 +6,16 @@ var cors = require("cors");
 app.use(cors());
 require("dotenv").config()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 4000
+
+app.get('/', (req, res) => {
+    try {
+        res.send("API Working successfully.")
+    } catch(error) {
+        return res.status(500).json({message: error})
+    }
+})
+
 
 app.get('/download', async (req, res) => {
     try {
